@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export interface IImports {
   province: string
   district: string
@@ -42,3 +44,10 @@ export enum ResponseStatus {
 export function capitilizeFirstLetter(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
+
+export function convertDate(rawDate: Date | string, format?: string | any, inUtc?: boolean) {
+  format = format || "DD MMM, YYYY"
+  rawDate = rawDate || new Date()
+  return inUtc ? moment(rawDate).utc().format(format) : moment(rawDate).format(format)
+}
+
