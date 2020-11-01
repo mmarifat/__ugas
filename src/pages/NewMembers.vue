@@ -210,16 +210,18 @@ export default class NewMembers extends Vue {
       this.previousCount = essentials.previousCount
       this.currentTotal = essentials.currentTotal[0].total
       this.previousTotal = essentials.previousTotal[0].total
-      this.rows = newMem.map((m: any) => ({
-        employeeNo: m.employeeNo,
-        manNo: m.manNo,
-        nrc: m.nrcNo,
-        names: m.names,
-        employer: m.ministry,
-        province: m.province,
-        district: m.district,
-        period: m.periodName
-      }))
+      if (newMem) {
+        this.rows = newMem.map((m: any) => ({
+          employeeNo: m.employeeNo,
+          manNo: m.manNo,
+          nrc: m.nrcNo,
+          names: m.names,
+          employer: m.ministry,
+          province: m.province,
+          district: m.district,
+          period: m.periodName
+        }))
+      } else this.rows = []
 
     }).finally(() => {
       Loading.hide()

@@ -24,7 +24,7 @@ export default store(async function ({Vue}) {
   return new Vuex.Store<StateInterface>({
     state: {
       periods: {current: '', previous: ''},
-      periodOptions: await Axios.get('periods').then(({data}) => data.map((m: any) => m.periodName).sort().reverse()) as any
+      periodOptions: await Axios.get('periods').then(({data}) => data ? data.map((m: any) => m.periodName).sort().reverse() : []) as any
     },
     mutations: {
       setPeriods(state, imp: { current: string, previous: string }) {

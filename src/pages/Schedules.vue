@@ -158,7 +158,9 @@ export default class Schedules extends Vue {
       this.previousCount = essentials.previousCount
       this.currentTotal = essentials.currentTotal[0].total
       this.previousTotal = essentials.previousTotal[0].total
-      this.rows = cur
+      if (cur) {
+        this.rows = cur
+      } else this.rows = []
 
     }).finally(() => {
       Loading.hide()

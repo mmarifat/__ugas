@@ -200,16 +200,18 @@ export default class Missing extends Vue {
       this.previousCount = essentials.previousCount
       this.currentTotal = essentials.currentTotal[0].total
       this.previousTotal = essentials.previousTotal[0].total
-      this.rows = missing.map((m: any) => ({
-        employeeNo: m.employeeNo,
-        manNo: m.manNo,
-        nrc: m.nrcNo,
-        name: m.employerName,
-        employer: m.ministry,
-        province: m.province,
-        district: m.district,
-        period: m.periodName
-      }))
+      if (missing) {
+        this.rows = missing.map((m: any) => ({
+          employeeNo: m.employeeNo,
+          manNo: m.manNo,
+          nrc: m.nrcNo,
+          name: m.employerName,
+          employer: m.ministry,
+          province: m.province,
+          district: m.district,
+          period: m.periodName
+        }))
+      } else this.rows = []
 
     }).finally(() => {
       Loading.hide()
