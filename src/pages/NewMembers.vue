@@ -205,11 +205,12 @@ export default class NewMembers extends Vue {
       this.$axios.get('essentials/' + this.period.current + '/' + this.period.previous).then(({data}) => data),
       this.$axios.patch('newMembers/' + this.period.current + '/' + this.period.previous).then(({data}) => data)
     ]).then(([essentials, newMem]) => {
-
-      this.currentCount = essentials.currentCount
-      this.previousCount = essentials.previousCount
-      this.currentTotal = essentials.currentTotal[0].total
-      this.previousTotal = essentials.previousTotal[0].total
+      if (essentials) {
+        this.currentCount = essentials.currentCount
+        this.previousCount = essentials.previousCount
+        this.currentTotal = essentials.currentTotal[0].total
+        this.previousTotal = essentials.previousTotal[0].total
+      }
       if (newMem) {
         this.rows = newMem.map((m: any) => ({
           employeeNo: m.employeeNo,

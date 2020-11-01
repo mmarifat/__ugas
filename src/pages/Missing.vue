@@ -195,11 +195,12 @@ export default class Missing extends Vue {
       this.$axios.get('essentials/' + this.period.current + '/' + this.period.previous).then(({data}) => data),
       this.$axios.patch('missing/' + this.period.current + '/' + this.period.previous).then(({data}) => data)
     ]).then(([essentials, missing]) => {
-
-      this.currentCount = essentials.currentCount
-      this.previousCount = essentials.previousCount
-      this.currentTotal = essentials.currentTotal[0].total
-      this.previousTotal = essentials.previousTotal[0].total
+      if (essentials) {
+        this.currentCount = essentials.currentCount
+        this.previousCount = essentials.previousCount
+        this.currentTotal = essentials.currentTotal[0].total
+        this.previousTotal = essentials.previousTotal[0].total
+      }
       if (missing) {
         this.rows = missing.map((m: any) => ({
           employeeNo: m.employeeNo,

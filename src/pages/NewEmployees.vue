@@ -186,11 +186,12 @@ export default class NewEmployees extends Vue {
       this.$axios.get('essentials/' + this.period.current + '/' + this.period.previous).then(({data}) => data),
       this.$axios.patch('newEmployers/' + this.period.current + '/' + this.period.previous).then(({data}) => data)
     ]).then(([essentials, newEmp]) => {
-
-      this.currentCount = essentials.currentCount
-      this.previousCount = essentials.previousCount
-      this.currentTotal = essentials.currentTotal[0].total
-      this.previousTotal = essentials.previousTotal[0].total
+      if (essentials) {
+        this.currentCount = essentials.currentCount
+        this.previousCount = essentials.previousCount
+        this.currentTotal = essentials.currentTotal[0].total
+        this.previousTotal = essentials.previousTotal[0].total
+      }
       if (newEmp) {
         this.rows = newEmp.map((m: any) => ({
           employerCode: m.district + ' - ' + m.ministry,
