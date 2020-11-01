@@ -201,12 +201,12 @@ export default class Missing extends Vue {
         this.currentTotal = essentials.currentTotal[0].total
         this.previousTotal = essentials.previousTotal[0].total
       }
-      if (missing.length) {
+      if (missing) {
         this.rows = missing.map((m: any) => ({
           employeeNo: m.employeeNo,
           manNo: m.manNo,
           nrc: m.nrcNo,
-          name: m.employerName,
+          names: m.names,
           employer: m.ministry,
           province: m.province,
           district: m.district,
