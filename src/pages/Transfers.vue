@@ -213,7 +213,7 @@ export default class Transfers extends Vue {
         this.currentTotal = essentials.currentTotal[0].total
         this.previousTotal = essentials.previousTotal[0].total
       }
-      if (transfer) {
+      if (transfer.length) {
         this.rows = transfer
       } else this.rows = []
 

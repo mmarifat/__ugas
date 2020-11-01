@@ -192,7 +192,7 @@ export default class NewEmployees extends Vue {
         this.currentTotal = essentials.currentTotal[0].total
         this.previousTotal = essentials.previousTotal[0].total
       }
-      if (newEmp) {
+      if (newEmp.length) {
         this.rows = newEmp.map((m: any) => ({
           employerCode: m.district + ' - ' + m.ministry,
           employerName: m.ministry,

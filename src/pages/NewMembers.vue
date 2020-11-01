@@ -211,7 +211,7 @@ export default class NewMembers extends Vue {
         this.currentTotal = essentials.currentTotal[0].total
         this.previousTotal = essentials.previousTotal[0].total
       }
-      if (newMem) {
+      if (newMem.length) {
         this.rows = newMem.map((m: any) => ({
           employeeNo: m.employeeNo,
           manNo: m.manNo,
