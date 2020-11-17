@@ -4,7 +4,7 @@
       <q-toolbar>
         <q-btn @click="left = !left" flat round dense icon="menu" class="q-mr-sm"/>
 
-        <q-toolbar-title>UGAS System</q-toolbar-title>
+        <q-toolbar-title class="text-center text-yellow-14">Zambia Union of Government and Allied Workers (UG)</q-toolbar-title>
         <q-btn class="q-mr-xs" flat round @click="$q.dark.toggle()" :icon="$q.dark.isActive ? 'nights_stay' : 'wb_sunny'">
           <q-tooltip>
             Change Theme
@@ -19,7 +19,7 @@
       </q-toolbar>
     </q-header>
     <q-drawer class="left-navigation text-white" v-model="left" elevated show-if-above
-              style="background-image: url(https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg) !important;" side="left">
+              side="left">
       <div class="full-height" :class="$q.dark.isActive ? 'drawer_dark' : 'drawer_normal'">
         <div style="height: calc(100% - 117px);padding:10px;">
           <q-toolbar>
@@ -99,6 +99,104 @@
 
                 <q-tooltip content-class="bg-primary">
                   Transfers
+                </q-tooltip>
+              </q-item>
+
+              <q-expansion-item exact>
+                <template v-slot:header>
+                  <q-item-section avatar>
+                    <q-avatar>
+                      <q-icon size="30px" name="unfold_more"/>
+                    </q-avatar>
+                  </q-item-section>
+                  <q-item-section>
+                    UG Incentives
+                  </q-item-section>
+                </template>
+
+                <q-item active-class="tab-active" :to="{name:'notYet'}" class="q-ma-sm navigation-item" clickable v-ripple>
+                  <q-item-section avatar>
+                    <q-avatar/>
+                  </q-item-section>
+
+                  <q-item-section>
+                    Baby Hampers
+                  </q-item-section>
+
+                  <q-tooltip content-class="bg-primary">
+                    Baby Hampers
+                  </q-tooltip>
+                </q-item>
+
+                <q-item active-class="tab-active" :to="{name:'notYet'}" class="q-ma-sm navigation-item" clickable v-ripple>
+                  <q-item-section avatar>
+                    <q-avatar/>
+                  </q-item-section>
+
+                  <q-item-section>
+                    Funeral Hampers
+                  </q-item-section>
+
+                  <q-tooltip content-class="bg-primary">
+                    Funeral Hampers
+                  </q-tooltip>
+                </q-item>
+
+                <q-item active-class="tab-active" :to="{name:'notYet'}" class="q-ma-sm navigation-item" clickable v-ripple>
+                  <q-item-section avatar>
+                    <q-avatar/>
+                  </q-item-section>
+
+                  <q-item-section>
+                    Medical Hampers
+                  </q-item-section>
+
+                  <q-tooltip content-class="bg-primary">
+                    Medical Hampers
+                  </q-tooltip>
+                </q-item>
+
+                <q-item active-class="tab-active" :to="{name:'notYet'}" class="q-ma-sm navigation-item" clickable v-ripple>
+                  <q-item-section avatar>
+                    <q-avatar/>
+                  </q-item-section>
+
+                  <q-item-section>
+                    Education Support
+                  </q-item-section>
+
+                  <q-tooltip content-class="bg-primary">
+                    Education Support
+                  </q-tooltip>
+                </q-item>
+
+                <q-item active-class="tab-active" :to="{name:'notYet'}" class="q-ma-sm navigation-item" clickable v-ripple>
+                  <q-item-section avatar>
+                    <q-avatar/>
+                  </q-item-section>
+
+                  <q-item-section>
+                    Loans
+                  </q-item-section>
+
+                  <q-tooltip content-class="bg-primary">
+                    Loans
+                  </q-tooltip>
+                </q-item>
+
+              </q-expansion-item>
+
+              <q-item active-class="tab-active" :to="{name:'notYet'}" class="q-ma-sm navigation-item" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="info"/>
+                </q-item-section>
+
+                <q-item-section>
+                  General Administration
+                </q-item-section>
+
+                <q-tooltip content-class="bg-primary">
+                  General Administration
                 </q-tooltip>
               </q-item>
 
@@ -215,12 +313,12 @@ export default class MainLayout extends Vue {
 
 <style lang="scss">
 .q-drawer {
-  background-image: url("/lake.jpg") !important;
+  /* background-image: url("/lake.jpg") !important;*/
   background-size: cover !important;
 }
 
 .drawer_normal {
-  background-color: rgba(1, 1, 1, 0.75);
+  background-color: green;
 }
 
 .drawer_dark {
@@ -242,8 +340,8 @@ body {
 .header_normal {
   background: linear-gradient(
       145deg,
-      rgb(32, 106, 80) 15%,
-      rgb(21, 57, 102) 70%
+      green 15%,
+      black 70%
   );
 }
 

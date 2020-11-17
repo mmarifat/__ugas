@@ -74,11 +74,11 @@ export default class Login extends Vue {
           "value": 80,
           "density": {
             "enable": true,
-            "value_area": 800
+            "value_area": 500
           }
         },
         "color": {
-          "value": "#ffffff"
+          "value": "#557555"
         },
         "shape": {
           "type": "circle",
@@ -193,11 +193,11 @@ export default class Login extends Vue {
 }
 
 .normal_gradient {
-  background: linear-gradient(145deg, rgb(74, 94, 137) 15%, #b61924 70%);
+  background: linear-gradient(145deg, green 15%, orange 70%);
 }
 
 .dark_gradient {
-  background: linear-gradient(145deg, rgb(11, 26, 61) 15%, #4c1014 70%);
+  background: linear-gradient(145deg, orange 15%, green 70%);
 }
 
 .login-form {
