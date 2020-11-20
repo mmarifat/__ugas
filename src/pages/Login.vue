@@ -36,8 +36,8 @@ import {Component, Vue} from 'vue-property-decorator';
 
 @Component
 export default class Login extends Vue {
-  username: string = 'admin'
-  password: string = '12345'
+  username: string = ''
+  password: string = ''
 
   loginNotify() {
     this.$axios.post('login', {

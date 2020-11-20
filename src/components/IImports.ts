@@ -14,6 +14,8 @@ export interface IImports {
   total: number | string
   empNo: number | string
   recNo: number | string
+  importBy?: string,
+  importAt?: string
 }
 
 export enum EImports {

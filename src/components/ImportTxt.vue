@@ -29,11 +29,13 @@ export default class ImportTxt extends Vue {
   show: boolean = false
   file: any = null
   importInfo: IImports[] = []
+  importLength: number = 0
 
   created() {
     this.$root.$on('importTxt', () => {
       this.file = null
       this.importInfo = []
+      this.importLength = 0
       this.show = true
     })
   }
@@ -69,17 +71,20 @@ export default class ImportTxt extends Vue {
                 total: line.slice(147, 165).trim(),
                 empNo: line.slice(165, 172).trim(),
                 recNo: line.slice(172, 178).trim(),
+                importBy: 'admin',
+                importAt: new Date().toISOString().split('T')[0]
               })
           }
           resolve(importInfo)
         }
       }).then((res: any) => {
         this.importInfo = res
+        this.importLength = this.importInfo.length
       })
     }
   }
 
-  save() {
+  async save() {
     Loading.show({
       //@ts-ignore
       spinner: QSpinnerBars,
@@ -87,23 +92,30 @@ export default class ImportTxt extends Vue {
       message: 'Importing............',
       messageColor: 'yellow'
     })
-    this.$axios.post('/save/' + this.importInfo[0].periodName, this.importInfo).then(({data}) => {
-      if (data) {
-        Notify.create({
-          message: 'Import Successfully!!',
-          type: 'positive'
-        })
-        this.$router.push({name: 'schedule'})
-      } else {
-        Notify.create({
-          message: 'Already Imported!!',
-          type: 'negative'
-        })
-      }
-    }).then(() => {
-      Loading.hide()
-      this.closeModal()
-    })
+
+
+    let splits: any[] = []
+    while (this.importInfo.length > 0)
+      splits.push(this.importInfo.splice(0, 100));
+
+    for (const each of splits) {
+      await this.$axios.post('/save/' + each[0].periodName + '/' + this.importLength, each).then(({data}) => {
+        if (data) {
+          Notify.create({
+            message: 'Import ' + each.length + ' Data Successfully!!',
+            type: 'positive'
+          })
+
+        } else {
+          Notify.create({
+            message: 'Already Imported!!',
+            type: 'negative'
+          })
+        }
+      })
+    }
+    Loading.hide()
+    this.closeModal()
   }
 
 
