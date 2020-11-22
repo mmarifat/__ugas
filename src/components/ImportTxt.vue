@@ -22,7 +22,7 @@
 <script lang='ts'>
 import {Component, Vue, Watch} from "vue-property-decorator";
 import {IImports} from "components/IImports";
-import {Loading, Notify, QSpinnerBars} from "quasar";
+import {Notify} from "quasar";
 
 @Component
 export default class ImportTxt extends Vue {
@@ -84,37 +84,26 @@ export default class ImportTxt extends Vue {
     }
   }
 
-  async save() {
-    Loading.show({
-      //@ts-ignore
-      spinner: QSpinnerBars,
-      spinnerColor: 'black',
-      message: 'Importing............',
-      messageColor: 'yellow'
+  save() {
+    Notify.create({
+      message: 'Importing total ' + this.importLength + ' data in the background..!!',
+      caption: 'Please wait sometime to complete!!',
+      type: 'positive'
     })
 
-
-    let splits: any[] = []
-    while (this.importInfo.length > 0)
-      splits.push(this.importInfo.splice(0, 100));
-
-    for (const each of splits) {
-      await this.$axios.post('/save/' + each[0].periodName + '/' + this.importLength, each).then(({data}) => {
-        if (data) {
-          Notify.create({
-            message: 'Import ' + each.length + ' Data Successfully!!',
-            type: 'positive'
-          })
-
-        } else {
-          Notify.create({
-            message: 'Already Imported!!',
-            type: 'negative'
-          })
-        }
-      })
-    }
-    Loading.hide()
+    this.$axios.post('/save/' + this.importInfo[0].periodName + '/' + this.importLength, this.importInfo).then(({data}) => {
+      if (!data) {
+        Notify.create({
+          message: 'Already Imported!!',
+          type: 'negative'
+        })
+      } else {
+        Notify.create({
+          message: 'Imported total ' + this.importLength + ' data!!',
+          type: 'positive'
+        })
+      }
+    })
     this.closeModal()
   }
 
