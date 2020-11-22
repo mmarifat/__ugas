@@ -27,11 +27,17 @@ export default store(async function ({Vue}) {
       periodOptions: await Axios.get('periods').then(({data}) => data.length ? data.map((m: any) => m.periodName).sort().reverse() : []) as any
     },
     mutations: {
+      setPeriodOptions(state, o: string) {
+        if (!state.periodOptions.includes(o)) state.periodOptions.push(o)
+      },
       setPeriods(state, imp: { current: string, previous: string }) {
         state.periods = imp
       }
     },
     actions: {
+      setPeriodOptions(state, o: string) {
+        state.commit('setPeriodOptions', o)
+      },
       setPeriods(state, imp: { current: string, previous: string }) {
         state.commit('setPeriods', imp)
       }

@@ -90,8 +90,8 @@ export default class ImportTxt extends Vue {
       caption: 'Please wait sometime to complete!!',
       type: 'positive'
     })
-
-    this.$axios.post('/save/' + this.importInfo[0].periodName + '/' + this.importLength, this.importInfo).then(({data}) => {
+    this.$store.dispatch("setPeriodOptions", this.importInfo[0].periodName)
+    this.$axios.post('/save/' + this.importInfo[0].periodName, this.importInfo).then(({data}) => {
       if (!data) {
         Notify.create({
           message: 'Already Imported!!',
